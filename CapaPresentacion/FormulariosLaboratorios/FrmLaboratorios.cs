@@ -11,14 +11,12 @@ namespace CapaPresentacion
         public FrmLaboratorios()
         {
             InitializeComponent();
-            cargarLaboratorios();
-
+ 
         }
 
         private void FrmLaboratorios_Load(object sender, EventArgs e)
         {
             cargarLaboratorios();
-
         }
 
         private void cargarLaboratorios()
@@ -26,6 +24,7 @@ namespace CapaPresentacion
             try
             {
                 dgvTablaLaboratorios.DataSource = null;
+
                 DataTable dt = cnLaboratorios.getListaLaboratorios();
                 dgvTablaLaboratorios.DataSource = dt;
 
@@ -34,8 +33,7 @@ namespace CapaPresentacion
                 dgvTablaLaboratorios.Columns["capacidad"].HeaderText = "Capacidad";
 
                 dgvTablaLaboratorios.ClearSelection();
-
-
+             
             }
             catch (Exception ex)
             {

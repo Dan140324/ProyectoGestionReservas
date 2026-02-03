@@ -83,7 +83,7 @@
             btnEliminarLaboratorio.TabIndex = 4;
             btnEliminarLaboratorio.Text = "Eliminar";
             btnEliminarLaboratorio.UseVisualStyleBackColor = true;
-            btnEliminarLaboratorio.Click += this.btnEliminarLaboratorio_Click;
+            btnEliminarLaboratorio.Click += btnEliminarLaboratorio_Click;
             // 
             // btnEditarLaboratorio
             // 
@@ -108,6 +108,7 @@
             Controls.Add(lblListadeLaboratorios);
             Name = "FrmLaboratorios";
             Text = "Laboratorios";
+            Load += FrmLaboratorios_Load;
             ((System.ComponentModel.ISupportInitialize)dgvTablaLaboratorios).EndInit();
             ResumeLayout(false);
             PerformLayout();
