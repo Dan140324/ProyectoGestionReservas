@@ -14,7 +14,7 @@ namespace CapaEntidad.Clases
         private string nombreLaboratorio;
         private int capacidad;
         private int idEstado;
-
+        
         public Laboratorio_Entidad(int idLaboratorio, string nombreLaboratorio, int capacidad, int idEstado)
         {
             this.idLaboratorio = idLaboratorio;
@@ -55,7 +55,7 @@ namespace CapaEntidad.Clases
             get { return idEstado; }
             set { idEstado = value; }
         }
-
+        
     }
 }
 

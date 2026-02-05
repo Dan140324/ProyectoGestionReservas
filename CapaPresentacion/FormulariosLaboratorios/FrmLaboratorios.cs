@@ -11,7 +11,6 @@ namespace CapaPresentacion
         public FrmLaboratorios()
         {
             InitializeComponent();
- 
         }
 
         private void FrmLaboratorios_Load(object sender, EventArgs e)
@@ -21,8 +20,8 @@ namespace CapaPresentacion
 
         private void cargarLaboratorios()
         {
-            try
-            {
+            try {
+                // Cargar los datos de los laboratorios
                 dgvTablaLaboratorios.DataSource = null;
 
                 DataTable dt = cnLaboratorios.getListaLaboratorios();
@@ -74,7 +73,7 @@ namespace CapaPresentacion
             }
 
         }
-
+     
         private void btnEliminarLaboratorio_Click(object sender, EventArgs e)
         {
             if (dgvTablaLaboratorios.SelectedRows.Count == 0)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             lblListadeLaboratorios = new Label();
             dgvTablaLaboratorios = new DataGridView();
             btnAgregarLaboratorio = new Button();
@@ -51,8 +52,19 @@
             // 
             // dgvTablaLaboratorios
             // 
+            dgvTablaLaboratorios.AllowUserToAddRows = false;
+            dgvTablaLaboratorios.AllowUserToDeleteRows = false;
+            dgvTablaLaboratorios.AllowUserToResizeRows = false;
             dgvTablaLaboratorios.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvTablaLaboratorios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.MenuBar;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.MenuBar;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvTablaLaboratorios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvTablaLaboratorios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvTablaLaboratorios.Location = new Point(12, 128);
             dgvTablaLaboratorios.MultiSelect = false;

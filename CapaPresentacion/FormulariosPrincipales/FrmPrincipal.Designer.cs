@@ -34,21 +34,24 @@
             btnReporteLaboratorios = new Button();
             btnUsuarios = new Button();
             btnSalir = new Button();
+            lblBienvenida = new Label();
+            lblPerfilUsuario = new Label();
+            btnGestionUsuarios = new Button();
             SuspendLayout();
             // 
             // btnLaboratorios
             // 
-            btnLaboratorios.Location = new Point(241, 84);
+            btnLaboratorios.Location = new Point(250, 84);
             btnLaboratorios.Name = "btnLaboratorios";
             btnLaboratorios.Size = new Size(133, 51);
             btnLaboratorios.TabIndex = 0;
-            btnLaboratorios.Text = "Laboratorios";
+            btnLaboratorios.Text = "Gestionar Laboratorios";
             btnLaboratorios.UseVisualStyleBackColor = true;
             btnLaboratorios.Click += btnLaboratorios_Click;
             // 
             // btnReservas
             // 
-            btnReservas.Location = new Point(405, 84);
+            btnReservas.Location = new Point(327, 152);
             btnReservas.Name = "btnReservas";
             btnReservas.Size = new Size(133, 51);
             btnReservas.TabIndex = 1;
@@ -57,7 +60,7 @@
             // 
             // btnReporteReservas
             // 
-            btnReporteReservas.Location = new Point(241, 266);
+            btnReporteReservas.Location = new Point(250, 275);
             btnReporteReservas.Name = "btnReporteReservas";
             btnReporteReservas.Size = new Size(133, 51);
             btnReporteReservas.TabIndex = 2;
@@ -66,7 +69,7 @@
             // 
             // btnReporteLaboratorios
             // 
-            btnReporteLaboratorios.Location = new Point(405, 266);
+            btnReporteLaboratorios.Location = new Point(405, 275);
             btnReporteLaboratorios.Name = "btnReporteLaboratorios";
             btnReporteLaboratorios.Size = new Size(133, 51);
             btnReporteLaboratorios.TabIndex = 3;
@@ -75,7 +78,7 @@
             // 
             // btnUsuarios
             // 
-            btnUsuarios.Location = new Point(327, 209);
+            btnUsuarios.Location = new Point(327, 218);
             btnUsuarios.Name = "btnUsuarios";
             btnUsuarios.Size = new Size(133, 51);
             btnUsuarios.TabIndex = 4;
@@ -92,11 +95,42 @@
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
             // 
+            // lblBienvenida
+            // 
+            lblBienvenida.AutoSize = true;
+            lblBienvenida.Location = new Point(22, 17);
+            lblBienvenida.Name = "lblBienvenida";
+            lblBienvenida.Size = new Size(82, 20);
+            lblBienvenida.TabIndex = 6;
+            lblBienvenida.Text = "Bienvenida";
+            // 
+            // lblPerfilUsuario
+            // 
+            lblPerfilUsuario.AutoSize = true;
+            lblPerfilUsuario.Location = new Point(22, 37);
+            lblPerfilUsuario.Name = "lblPerfilUsuario";
+            lblPerfilUsuario.Size = new Size(42, 20);
+            lblPerfilUsuario.TabIndex = 7;
+            lblPerfilUsuario.Text = "Perfil";
+            // 
+            // btnGestionUsuarios
+            // 
+            btnGestionUsuarios.Location = new Point(405, 84);
+            btnGestionUsuarios.Name = "btnGestionUsuarios";
+            btnGestionUsuarios.Size = new Size(133, 51);
+            btnGestionUsuarios.TabIndex = 8;
+            btnGestionUsuarios.Text = "Gestionar Usuarios";
+            btnGestionUsuarios.UseVisualStyleBackColor = true;
+            btnGestionUsuarios.Click += btnGestionUsuarios_Click;
+            // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnGestionUsuarios);
+            Controls.Add(lblPerfilUsuario);
+            Controls.Add(lblBienvenida);
             Controls.Add(btnSalir);
             Controls.Add(btnUsuarios);
             Controls.Add(btnReporteLaboratorios);
@@ -105,7 +139,9 @@
             Controls.Add(btnLaboratorios);
             Name = "FrmPrincipal";
             Text = "Menú Principal";
+            Load += FrmPrincipal_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -116,5 +152,8 @@
         private Button btnReporteLaboratorios;
         private Button btnUsuarios;
         private Button btnSalir;
+        private Label lblBienvenida;
+        private Label lblPerfilUsuario;
+        private Button btnGestionUsuarios;
     }
 }
