@@ -13,8 +13,6 @@ namespace CapaNegocio.Laboratorios
     public class CN_Laboratorios
     {
         private CD_LaboratorioDAO laboratorioDAO = new CD_LaboratorioDAO();
-
-        // MÉTODO REFACTORIZADO: Retorna List<Laboratorio_Entidad>
         public List<Laboratorio_Entidad> getListaLaboratorios()
         {
             try
@@ -27,7 +25,6 @@ namespace CapaNegocio.Laboratorios
             }
         }
 
-        // ALTERNATIVA: Si aún necesitas DataTable en algunos lugares
         public DataTable getListaLaboratoriosDataTable()
         {
             try
@@ -69,7 +66,6 @@ namespace CapaNegocio.Laboratorios
         {
             try
             {
-                // Validaciones de negocio
                 if (string.IsNullOrWhiteSpace(laboratorio.NombreLaboratorio))
                 {
                     throw new ArgumentException("El nombre del laboratorio es obligatorio.");
@@ -90,7 +86,6 @@ namespace CapaNegocio.Laboratorios
                     throw new ArgumentException("La capacidad no puede ser mayor a 100.");
                 }
 
-                // Si todo está bien, guardar
                 return laboratorioDAO.guardarLaboratorio(laboratorio);
             }
             catch (Exception ex)
@@ -99,7 +94,6 @@ namespace CapaNegocio.Laboratorios
             }
         }
 
-        // Método sobrecargado: mantener compatibilidad con código anterior
         public bool guardarLaboratorio(int? idLaboratorio, string nombreLaboratorio, int capacidad, int idEstado)
         {
             Laboratorio_Entidad laboratorio = new Laboratorio_Entidad
@@ -113,7 +107,7 @@ namespace CapaNegocio.Laboratorios
             return guardarLaboratorio(laboratorio);
         }
 
-        // Validar si existe un laboratorio con el mismo nombre
+        //Validar si existe un laboratorio con el mismo nombre
         public bool existeLaboratorioConNombre(string nombre, int? idLaboratorioExcluir = null)
         {
             try
@@ -122,7 +116,7 @@ namespace CapaNegocio.Laboratorios
 
                 foreach (var lab in laboratorios)
                 {
-                    // Si estamos editando, excluir el laboratorio actual
+                    //Si estamos editando, excluir el laboratorio actual
                     if (idLaboratorioExcluir.HasValue && lab.IdLaboratorio == idLaboratorioExcluir.Value)
                         continue;
 
@@ -155,23 +149,8 @@ namespace CapaNegocio.Laboratorios
             }
         }
 
-        // Métodos adicionales útiles
-
-        // Obtener solo laboratorios activos
-        public List<Laboratorio_Entidad> getListaLaboratoriosActivos()
-        {
-            try
-            {
-                List<Laboratorio_Entidad> todos = laboratorioDAO.getListaLaboratorio();
-                return todos.FindAll(lab => lab.IdEstado == 1); // 1 = Activo
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener laboratorios activos: " + ex.Message, ex);
-            }
-        }
-
-        // Buscar laboratorios por nombre
+        //Métodos adicionales     
+        //Buscar laboratorios por nombre
         public List<Laboratorio_Entidad> buscarLaboratoriosPorNombre(string nombre)
         {
             try
@@ -192,7 +171,7 @@ namespace CapaNegocio.Laboratorios
             }
         }
 
-        // Contar total de laboratorios
+        //Contar total de laboratorios
         public int contarLaboratorios()
         {
             try

@@ -32,12 +32,7 @@ namespace CapaPresentacion.Logins
         private void ConfigurarDataGridView()
         {
             dgvUsuarios.AutoGenerateColumns = false;
-            dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvUsuarios.MultiSelect = false;
-            dgvUsuarios.ReadOnly = true;
-            dgvUsuarios.AllowUserToAddRows = false;
-            dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+     
             //Definir columnas manualmente
             dgvUsuarios.Columns.Clear();
 

@@ -31,7 +31,6 @@
             btnLaboratorios = new Button();
             btnReservas = new Button();
             btnReporteReservas = new Button();
-            btnReporteLaboratorios = new Button();
             btnMisReservas = new Button();
             btnSalir = new Button();
             lblBienvenida = new Label();
@@ -41,7 +40,7 @@
             // 
             // btnLaboratorios
             // 
-            btnLaboratorios.Location = new Point(250, 84);
+            btnLaboratorios.Location = new Point(250, 272);
             btnLaboratorios.Name = "btnLaboratorios";
             btnLaboratorios.Size = new Size(133, 51);
             btnLaboratorios.TabIndex = 0;
@@ -51,7 +50,7 @@
             // 
             // btnReservas
             // 
-            btnReservas.Location = new Point(250, 150);
+            btnReservas.Location = new Point(250, 107);
             btnReservas.Name = "btnReservas";
             btnReservas.Size = new Size(133, 51);
             btnReservas.TabIndex = 1;
@@ -61,25 +60,17 @@
             // 
             // btnReporteReservas
             // 
-            btnReporteReservas.Location = new Point(250, 275);
+            btnReporteReservas.Location = new Point(327, 164);
             btnReporteReservas.Name = "btnReporteReservas";
             btnReporteReservas.Size = new Size(133, 51);
             btnReporteReservas.TabIndex = 2;
             btnReporteReservas.Text = "Reporte de Reservas";
             btnReporteReservas.UseVisualStyleBackColor = true;
-            // 
-            // btnReporteLaboratorios
-            // 
-            btnReporteLaboratorios.Location = new Point(405, 275);
-            btnReporteLaboratorios.Name = "btnReporteLaboratorios";
-            btnReporteLaboratorios.Size = new Size(133, 51);
-            btnReporteLaboratorios.TabIndex = 3;
-            btnReporteLaboratorios.Text = "Reporte de Laboratorios";
-            btnReporteLaboratorios.UseVisualStyleBackColor = true;
+            btnReporteReservas.Click += btnReporteReservas_Click;
             // 
             // btnMisReservas
             // 
-            btnMisReservas.Location = new Point(405, 150);
+            btnMisReservas.Location = new Point(405, 107);
             btnMisReservas.Name = "btnMisReservas";
             btnMisReservas.Size = new Size(133, 51);
             btnMisReservas.TabIndex = 4;
@@ -89,7 +80,7 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(327, 353);
+            btnSalir.Location = new Point(327, 387);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(133, 51);
             btnSalir.TabIndex = 5;
@@ -117,7 +108,7 @@
             // 
             // btnGestionUsuarios
             // 
-            btnGestionUsuarios.Location = new Point(405, 84);
+            btnGestionUsuarios.Location = new Point(405, 272);
             btnGestionUsuarios.Name = "btnGestionUsuarios";
             btnGestionUsuarios.Size = new Size(133, 51);
             btnGestionUsuarios.TabIndex = 8;
@@ -135,12 +126,12 @@
             Controls.Add(lblBienvenida);
             Controls.Add(btnSalir);
             Controls.Add(btnMisReservas);
-            Controls.Add(btnReporteLaboratorios);
             Controls.Add(btnReporteReservas);
             Controls.Add(btnReservas);
             Controls.Add(btnLaboratorios);
             Name = "FrmPrincipal";
             Text = "Menú Principal";
+            FormClosing += FrmPrincipal_FormClosing;
             Load += FrmPrincipal_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -151,7 +142,6 @@
         private Button btnLaboratorios;
         private Button btnReservas;
         private Button btnReporteReservas;
-        private Button btnReporteLaboratorios;
         private Button btnMisReservas;
         private Button btnSalir;
         private Label lblBienvenida;

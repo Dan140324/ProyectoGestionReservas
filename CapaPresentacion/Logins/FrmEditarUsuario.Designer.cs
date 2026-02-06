@@ -100,7 +100,7 @@
             // 
             // txtNombreCompleto
             // 
-            txtNombreCompleto.Location = new Point(251, 191);
+            txtNombreCompleto.Location = new Point(251, 288);
             txtNombreCompleto.Name = "txtNombreCompleto";
             txtNombreCompleto.Size = new Size(157, 27);
             txtNombreCompleto.TabIndex = 5;
@@ -109,7 +109,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.2F);
-            label3.Location = new Point(251, 165);
+            label3.Location = new Point(251, 262);
             label3.Name = "label3";
             label3.Size = new Size(157, 23);
             label3.TabIndex = 4;
@@ -117,7 +117,7 @@
             // 
             // txtContrasena
             // 
-            txtContrasena.Location = new Point(251, 286);
+            txtContrasena.Location = new Point(251, 190);
             txtContrasena.Name = "txtContrasena";
             txtContrasena.Size = new Size(157, 27);
             txtContrasena.TabIndex = 8;
@@ -126,7 +126,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.2F);
-            label4.Location = new Point(251, 260);
+            label4.Location = new Point(251, 164);
             label4.Name = "label4";
             label4.Size = new Size(101, 23);
             label4.TabIndex = 7;

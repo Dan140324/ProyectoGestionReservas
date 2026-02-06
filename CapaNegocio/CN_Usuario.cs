@@ -59,7 +59,7 @@ namespace CapaNegocio
             }
         }
 
-        // Obtener usuario por ID
+        //Obtener usuario por ID
         public Usuario_Entidad ObtenerUsuarioPorId(int idUsuario)
         {
             try
@@ -86,13 +86,13 @@ namespace CapaNegocio
             {
                 ValidarDatosUsuario(usuario);
 
-                // Validar que no exista el usuario
+                //Validar que no exista el usuario
                 if (usuarioDAO.ExisteUsuario(usuario.Usuario))
                 {
                     throw new Exception($"Ya existe un usuario con el nombre '{usuario.Usuario}'");
                 }
 
-                // Validar longitud de contraseña
+                //Validar longitud de contraseña
                 if (usuario.Contrasena.Length < 4)
                 {
                     throw new ArgumentException("La contraseña debe tener al menos 4 caracteres");
@@ -114,8 +114,8 @@ namespace CapaNegocio
                 Usuario = usuario,
                 Contrasena = contrasena,
                 NombreUsuario = nombreUsuario,
-                IdRol = 2, // Usuario normal por defecto
-                IdEstado = 1 // Activo por defecto
+                IdRol = 2, //Usuario normal por defecto
+                IdEstado = 1 //Activo por defecto
             };
 
             return CrearUsuario(nuevoUsuario);
@@ -164,45 +164,8 @@ namespace CapaNegocio
                 throw new Exception("Error al actualizar usuario: " + ex.Message, ex);
             }
         }
-        /*
-        public bool CambiarEstadoUsuario(int idUsuario, int nuevoEstado)
-        {
-            try
-            {
-                if (idUsuario <= 0)
-                    throw new ArgumentException("ID de usuario inválido");
-
-                if (nuevoEstado != 1 && nuevoEstado != 2)
-                    throw new ArgumentException("Estado inválido (debe ser 1=Activo o 2=Inactivo)");
-
-                //Obtener el usuario
-                Usuario_Entidad usuario = usuarioDAO.ObtenerUsuarioPorId(idUsuario);
-
-                // Validar que no se desactive al último administrador
-                if (usuario.EsAdministrador && nuevoEstado == 2)
-                {
-                    int cantidadAdminsActivos = ContarAdministradoresActivos();
-                    if (cantidadAdminsActivos <= 1)
-                    {
-                        throw new Exception("No se puede desactivar al último administrador del sistema");
-                    }
-                }
-
-                // Validar que no se desactive al usuario actual
-                if (idUsuario == UsuarioLoginCache.idUsuario)
-                {
-                    throw new Exception("No puedes desactivar tu propia cuenta");
-                }
-
-                return usuarioDAO.CambiarEstadoUsuario(idUsuario, nuevoEstado);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al cambiar estado: " + ex.Message, ex);
-            }
-        }*/
-
-        // Verificar si existe un usuario
+        
+        //Verificar si existe un usuario
         public bool ExisteUsuario(string usuario)
         {
             try
@@ -236,44 +199,17 @@ namespace CapaNegocio
             if (usuario.IdEstado <= 0)
                 throw new ArgumentException("Debe seleccionar un estado válido");
         }
-
+        
         private int ContarAdministradoresActivos()
         {
             List<Usuario_Entidad> usuarios = usuarioDAO.ListarUsuarios(filtroRol: "Administrador", filtroEstado: "Activo");
             return usuarios.Count;
         }
-
-        // Listar solo usuarios activos
-        public List<Usuario_Entidad> ListarUsuariosActivos()
-        {
-            return usuarioDAO.ListarUsuarios(filtroEstado: "Activo");
-        }
-
-        // Listar solo administradores
-        public List<Usuario_Entidad> ListarAdministradores()
-        {
-            return usuarioDAO.ListarUsuarios(filtroRol: "Administrador");
-        }
-
-        // Buscar usuarios por nombre
-        public List<Usuario_Entidad> BuscarPorNombre(string nombre)
-        {
-            if (string.IsNullOrWhiteSpace(nombre))
-                return ListarUsuarios();
-
-            return usuarioDAO.ListarUsuarios(filtroNombreUsuario: nombre);
-        }
-
+        
         // Contar total de usuarios
         public int ContarUsuarios()
         {
             return usuarioDAO.ListarUsuarios().Count;
-        }
-
-        // Contar usuarios por estado
-        public int ContarUsuariosPorEstado(string estado)
-        {
-            return usuarioDAO.ListarUsuarios(filtroEstado: estado).Count;
         }
     }
 }

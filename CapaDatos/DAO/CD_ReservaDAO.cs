@@ -259,6 +259,26 @@ namespace CapaDatos.DAO
 
             return reservasDelDia;
         }
+
+        public int FinalizarReservasPasadas()
+        {
+            try
+            {
+                List<CD_SP_Parametros> lista_parametros = new List<CD_SP_Parametros>();
+                DataTable dt = obj_sql.EjecutarSP_Query("sp_FinalizarReservasPasadas", lista_parametros);
+
+                if (dt.Rows.Count > 0)
+                {
+                    return Convert.ToInt32(dt.Rows[0]["ReservasFinalizadas"]);
+                }
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al finalizar reservas pasadas: " + ex.Message, ex);
+            }
+        }
     }
 }
 

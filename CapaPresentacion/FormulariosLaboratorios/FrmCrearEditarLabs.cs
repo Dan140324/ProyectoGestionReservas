@@ -18,54 +18,34 @@ namespace CapaPresentacion.Formularios
         private Laboratorio_Entidad laboratorioActual = null;
         private bool esEdicion = false;
 
-        // Constructor para CREAR nuevo laboratorio
         public FrmCrearEditarLabs()
         {
             InitializeComponent();
             lblAgregarLaboratorio.Text = "Agregar Laboratorio";
             esEdicion = false;
 
-            // Inicializar nuevo laboratorio
+            //Inicializar nuevo laboratorio
             laboratorioActual = new Laboratorio_Entidad
             {
                 IdLaboratorio = 0,
-                IdEstado = 1 // Activo por defecto
+                IdEstado = 1 //Activo por defecto
             };
         }
 
-        // CONSTRUCTOR REFACTORIZADO: Recibe la entidad completa
+        //Constructor para edición que recibe la entidad completa
         public FrmCrearEditarLabs(Laboratorio_Entidad laboratorio)
         {
             InitializeComponent();
             lblAgregarLaboratorio.Text = "Editar Laboratorio";
             esEdicion = true;
 
-            // Guardar referencia a la entidad
+            //Guardar referencia a la entidad
             laboratorioActual = laboratorio;
 
-            // Cargar datos en los controles
             CargarDatos();
         }
-
-        // Constructor anterior (mantener compatibilidad si lo necesitas)
-        public FrmCrearEditarLabs(int id, string nombre, int capacidad)
-        {
-            InitializeComponent();
-            lblAgregarLaboratorio.Text = "Editar Laboratorio";
-            esEdicion = true;
-
-            laboratorioActual = new Laboratorio_Entidad
-            {
-                IdLaboratorio = id,
-                NombreLaboratorio = nombre,
-                Capacidad = capacidad,
-                IdEstado = 1
-            };
-
-            CargarDatos();
-        }
-
-        // NUEVO: Cargar datos de la entidad en los controles
+        
+        //Cargar datos de la entidad en controles
         private void CargarDatos()
         {
             if (laboratorioActual != null)
@@ -76,12 +56,11 @@ namespace CapaPresentacion.Formularios
             }
         }
 
-        // MÉTODO REFACTORIZADO: Trabaja con la entidad
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-                // Validaciones básicas de UI
+                //Validaciones básicas de UI
                 if (string.IsNullOrWhiteSpace(txtNombreLab.Text))
                 {
                     MessageBox.Show("El nombre es obligatorio",
@@ -98,7 +77,7 @@ namespace CapaPresentacion.Formularios
                     return;
                 }
 
-                // Validar nombre duplicado
+                //Validar nombre duplicado
                 if (cnLaboratorios.existeLaboratorioConNombre(
                     txtNombreLab.Text.Trim(),
                     esEdicion ? laboratorioActual.IdLaboratorio : (int?)null))
@@ -109,12 +88,12 @@ namespace CapaPresentacion.Formularios
                     return;
                 }
 
-                // Actualizar datos de la entidad
+                //Actualizar datos de la entidad
                 laboratorioActual.NombreLaboratorio = txtNombreLab.Text.Trim();
                 laboratorioActual.Capacidad = (int)nudCapacidadLab.Value;
-                laboratorioActual.IdEstado = 1; // Activo
+                laboratorioActual.IdEstado = 1; //Activo
 
-                // Guardar usando la capa de negocio
+                //Guardar usando la capa de negocio
                 bool guardado = cnLaboratorios.guardarLaboratorio(laboratorioActual);
 
                 if (guardado)

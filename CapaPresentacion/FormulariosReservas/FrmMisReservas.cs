@@ -25,6 +25,7 @@ namespace CapaPresentacion.FormulariosReservas
 
         private void FrmMisReservas_Load(object sender, EventArgs e)
         {
+            FinalizarReservasPasadas(); //Asegurar que las reservas pasadas se marquen como finalizadas al cargar el formulario
             CargarFiltros();
             CargarMisReservas();
             MostrarInfoUsuario();
@@ -35,12 +36,7 @@ namespace CapaPresentacion.FormulariosReservas
         private void ConfigurarDataGridView()
         {
             dgvReservas.AutoGenerateColumns = false;
-            dgvReservas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvReservas.MultiSelect = false;
-            dgvReservas.ReadOnly = true;
-            dgvReservas.AllowUserToAddRows = false;
-            dgvReservas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+            
             //Definir columnas manualmente
             dgvReservas.Columns.Clear();
 
@@ -225,11 +221,12 @@ namespace CapaPresentacion.FormulariosReservas
                     DateTime hoy = DateTime.Now.Date;
                     return reservas.FindAll(r => r.Fecha.Date == hoy);
 
-                default: // "Todas"
+                default: //"Todas"
                     return reservas;
             }
         }
 
+        //Pinta las filas del DataGridView según el estado de la reserva para mejorar la visualización
         private void PintarFilasPorEstado()
         {
             foreach (DataGridViewRow row in dgvReservas.Rows)
@@ -239,16 +236,17 @@ namespace CapaPresentacion.FormulariosReservas
                 if (reserva.EsActiva)
                 {
                     row.DefaultCellStyle.BackColor = Color.LightGreen;
+                    row.DefaultCellStyle.ForeColor = Color.Black;
                 }
                 else if (reserva.EsCancelada)
                 {
                     row.DefaultCellStyle.BackColor = Color.LightCoral;
-                    row.DefaultCellStyle.ForeColor = Color.Gray;
+                    row.DefaultCellStyle.ForeColor = Color.Black;
                 }
                 else if (reserva.EsFinalizada)
                 {
                     row.DefaultCellStyle.BackColor = Color.LightGray;
-                    row.DefaultCellStyle.ForeColor = Color.DarkGray;
+                    row.DefaultCellStyle.ForeColor = Color.Black;
                 }
             }
         }
@@ -314,7 +312,7 @@ namespace CapaPresentacion.FormulariosReservas
                 //Obtener reserva completa de la BD
                 Reserva_Entidad reservaCompleta = cnReservas.ObtenerReservaPorId(reservaSeleccionada.IdReserva);
 
-                // brir formulario de edición
+                //Abrir formulario de edición
                 FrmEditarReserva frm = new FrmEditarReserva(reservaCompleta);
 
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -458,6 +456,16 @@ namespace CapaPresentacion.FormulariosReservas
         }
 
         //Métodos auxiliares
+        //Finaliza automáticamente las reservas que ya pasaron al cargar el formulario
+        private void FinalizarReservasPasadas()
+        {
+            try
+            {
+                cnReservas.FinalizarReservasPasadasAutomaticamente();
+            }
+            catch { }
+        }
+
         private void ActualizarContador()
         {
             int total = dgvReservas.Rows.Count;

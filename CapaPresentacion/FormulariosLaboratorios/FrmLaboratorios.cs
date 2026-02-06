@@ -23,18 +23,12 @@ namespace CapaPresentacion
 
         private void ConfigurarDataGridView()
         {
-            // Configuración general
             dgvTablaLaboratorios.AutoGenerateColumns = false;
-            dgvTablaLaboratorios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvTablaLaboratorios.MultiSelect = false;
-            dgvTablaLaboratorios.ReadOnly = true;
-            dgvTablaLaboratorios.AllowUserToAddRows = false;
-            dgvTablaLaboratorios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            // Definir columnas manualmente
+         
+            //Definir columnas manualmente
             dgvTablaLaboratorios.Columns.Clear();
 
-            // Columna ID
+            //Columna ID
             dgvTablaLaboratorios.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "IdLaboratorio",
@@ -43,7 +37,7 @@ namespace CapaPresentacion
                 Width = 50,
             });
 
-            // Columna Nombre
+            //Columna Nombre
             dgvTablaLaboratorios.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "NombreLaboratorio",
@@ -52,7 +46,7 @@ namespace CapaPresentacion
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
-            // Columna Capacidad
+            //Columna Capacidad
             dgvTablaLaboratorios.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Capacidad",

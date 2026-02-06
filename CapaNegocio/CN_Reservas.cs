@@ -393,7 +393,9 @@ namespace CapaNegocio
             }
         }
 
-        // Contar reservas activas de un usuario (para limitar la cantidad de reservas activas por usuario)
+
+
+        //Contar reservas activas de un usuario (para limitar la cantidad de reservas activas por usuario)
         public int ContarReservasActivasUsuario(int idUsuario)
         {
             try
@@ -466,6 +468,18 @@ namespace CapaNegocio
             catch (Exception ex)
             {
                 throw new Exception("Error al obtener horarios libres: " + ex.Message, ex);
+            }
+        }
+        //Finalizar automáticamente las reservas pasadas
+        public int FinalizarReservasPasadasAutomaticamente()
+        {
+            try
+            {
+                return reservaDAO.FinalizarReservasPasadas();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al finalizar reservas pasadas: " + ex.Message, ex);
             }
         }
 

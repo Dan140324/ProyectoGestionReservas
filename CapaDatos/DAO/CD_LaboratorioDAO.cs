@@ -15,7 +15,7 @@ namespace CapaDatos.DAO
         private CD_ManagementSQL obj_sql = new CD_ManagementSQL();
         Laboratorio_Entidad laboratorio = null;
 
-
+        //Listar laboratorios activos (retorna lista de entidades)
         public List<Laboratorio_Entidad> getListaLaboratorio()
         {
             List<Laboratorio_Entidad> listaLaboratorios = new List<Laboratorio_Entidad>();
@@ -33,9 +33,6 @@ namespace CapaDatos.DAO
                         IdLaboratorio = Convert.ToInt32(row["idLaboratorio"]),
                         NombreLaboratorio = row["nombre"].ToString(),
                         Capacidad = Convert.ToInt32(row["capacidad"]),
-                        // Si tu SP retorna el idEstado, descomenta esto:
-                        // IdEstado = Convert.ToInt32(row["idEstado"]),
-                        // NombreEstado = row["nombreEstado"].ToString()
                     };
 
                     listaLaboratorios.Add(laboratorio);
@@ -49,7 +46,6 @@ namespace CapaDatos.DAO
             return listaLaboratorios;
         }
 
-        // ALTERNATIVA: Método que retorna DataTable (por si aún lo necesitas)
         public DataTable getListaLaboratorioDataTable()
         {
             List<CD_SP_Parametros> lista_parametros = new List<CD_SP_Parametros>();
