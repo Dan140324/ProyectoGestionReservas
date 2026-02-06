@@ -124,6 +124,7 @@
             Controls.Add(btnLogin);
             Controls.Add(btnSalir);
             Name = "FrmLogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Iniciar Sesión";
             Load += FrmLogin_Load;
             ResumeLayout(false);

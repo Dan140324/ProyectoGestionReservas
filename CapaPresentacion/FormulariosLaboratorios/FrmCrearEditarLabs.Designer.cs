@@ -109,7 +109,7 @@
             btnGuardar.TabIndex = 7;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
-            btnGuardar.Click += this.btnGuardar_Click;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCancelar
             // 
@@ -136,6 +136,7 @@
             Controls.Add(lblAgregarLaboratorio);
             Controls.Add(txtNombreLab);
             Name = "FrmCrearEditarLabs";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Crear Laboratorio";
             ((System.ComponentModel.ISupportInitialize)nudCapacidadLab).EndInit();
             ResumeLayout(false);

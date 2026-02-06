@@ -209,6 +209,7 @@
             Controls.Add(label1);
             Controls.Add(lblIdUsuario);
             Name = "FrmEditarUsuario";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Editar Usuario";
             Load += FrmEditarUsuario_Load;
             ResumeLayout(false);

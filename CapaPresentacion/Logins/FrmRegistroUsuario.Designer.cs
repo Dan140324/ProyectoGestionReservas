@@ -140,6 +140,7 @@
             Controls.Add(lblUsuario);
             Controls.Add(txtNuevoUsuario);
             Name = "FrmRegistroUsuario";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Crear Usuario";
             ResumeLayout(false);
             PerformLayout();

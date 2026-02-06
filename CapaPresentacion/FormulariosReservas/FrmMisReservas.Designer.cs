@@ -245,6 +245,7 @@
             Controls.Add(cmbFiltroEstado);
             Controls.Add(dgvReservas);
             Name = "FrmMisReservas";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Mis reservas";
             Load += FrmMisReservas_Load;
             ((System.ComponentModel.ISupportInitialize)dgvReservas).EndInit();

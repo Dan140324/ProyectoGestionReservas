@@ -130,6 +130,7 @@
             Controls.Add(btnReservas);
             Controls.Add(btnLaboratorios);
             Name = "FrmPrincipal";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Menú Principal";
             FormClosing += FrmPrincipal_FormClosing;
             Load += FrmPrincipal_Load;

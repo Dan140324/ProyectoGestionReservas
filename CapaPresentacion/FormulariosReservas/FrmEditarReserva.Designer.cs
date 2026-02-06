@@ -289,6 +289,7 @@
             Controls.Add(lblInfoOriginal);
             Controls.Add(lblIdReserva);
             Name = "FrmEditarReserva";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Editar reserva";
             Load += FrmEditarReserva_Load;
             ((System.ComponentModel.ISupportInitialize)nudCantidadUsuarios).EndInit();

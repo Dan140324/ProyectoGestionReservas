@@ -184,6 +184,7 @@
             Controls.Add(txtFiltroUsuario);
             Controls.Add(dgvUsuarios);
             Name = "FrmGestionUsuarios";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestión de Usuarios";
             Load += FrmGestionUsuarios_Load;
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();

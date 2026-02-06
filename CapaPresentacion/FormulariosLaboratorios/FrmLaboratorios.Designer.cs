@@ -130,6 +130,7 @@
             Controls.Add(dgvTablaLaboratorios);
             Controls.Add(lblListadeLaboratorios);
             Name = "FrmLaboratorios";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Laboratorios";
             Load += FrmLaboratorios_Load;
             ((System.ComponentModel.ISupportInitialize)dgvTablaLaboratorios).EndInit();
