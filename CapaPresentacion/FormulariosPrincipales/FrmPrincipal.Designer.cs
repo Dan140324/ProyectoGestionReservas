@@ -32,7 +32,7 @@
             btnReservas = new Button();
             btnReporteReservas = new Button();
             btnReporteLaboratorios = new Button();
-            btnUsuarios = new Button();
+            btnMisReservas = new Button();
             btnSalir = new Button();
             lblBienvenida = new Label();
             lblPerfilUsuario = new Label();
@@ -51,12 +51,13 @@
             // 
             // btnReservas
             // 
-            btnReservas.Location = new Point(327, 152);
+            btnReservas.Location = new Point(250, 150);
             btnReservas.Name = "btnReservas";
             btnReservas.Size = new Size(133, 51);
             btnReservas.TabIndex = 1;
-            btnReservas.Text = "Reservas";
+            btnReservas.Text = "Crear Reserva";
             btnReservas.UseVisualStyleBackColor = true;
+            btnReservas.Click += btnReservas_Click;
             // 
             // btnReporteReservas
             // 
@@ -76,14 +77,15 @@
             btnReporteLaboratorios.Text = "Reporte de Laboratorios";
             btnReporteLaboratorios.UseVisualStyleBackColor = true;
             // 
-            // btnUsuarios
+            // btnMisReservas
             // 
-            btnUsuarios.Location = new Point(327, 218);
-            btnUsuarios.Name = "btnUsuarios";
-            btnUsuarios.Size = new Size(133, 51);
-            btnUsuarios.TabIndex = 4;
-            btnUsuarios.Text = "Gestión de Usuarios";
-            btnUsuarios.UseVisualStyleBackColor = true;
+            btnMisReservas.Location = new Point(405, 150);
+            btnMisReservas.Name = "btnMisReservas";
+            btnMisReservas.Size = new Size(133, 51);
+            btnMisReservas.TabIndex = 4;
+            btnMisReservas.Text = "Mis Reservas";
+            btnMisReservas.UseVisualStyleBackColor = true;
+            btnMisReservas.Click += btnMisReservas_Click;
             // 
             // btnSalir
             // 
@@ -132,7 +134,7 @@
             Controls.Add(lblPerfilUsuario);
             Controls.Add(lblBienvenida);
             Controls.Add(btnSalir);
-            Controls.Add(btnUsuarios);
+            Controls.Add(btnMisReservas);
             Controls.Add(btnReporteLaboratorios);
             Controls.Add(btnReporteReservas);
             Controls.Add(btnReservas);
@@ -150,7 +152,7 @@
         private Button btnReservas;
         private Button btnReporteReservas;
         private Button btnReporteLaboratorios;
-        private Button btnUsuarios;
+        private Button btnMisReservas;
         private Button btnSalir;
         private Label lblBienvenida;
         private Label lblPerfilUsuario;

@@ -40,14 +40,14 @@ namespace CapaNegocio.Laboratorios
             }
         }
 
-        // Obtener laboratorio por ID
-        public Laboratorio_Entidad obtenerLaboratorioPorId(int idLaboratorio)
+        //Obtener laboratorio por ID
+        public Laboratorio_Entidad ObtenerLaboratorioPorId(int idLaboratorio)
         {
             try
             {
                 if (idLaboratorio <= 0)
                 {
-                    throw new ArgumentException("El ID del laboratorio debe ser mayor a 0.");
+                    throw new ArgumentException("El ID del laboratorio debe ser mayor a 0");
                 }
 
                 Laboratorio_Entidad laboratorio = laboratorioDAO.obtenerLaboratorioPorId(idLaboratorio);
@@ -65,7 +65,6 @@ namespace CapaNegocio.Laboratorios
             }
         }
 
-        // MÉTODO REFACTORIZADO: Recibe entidad y aplica validaciones de negocio
         public bool guardarLaboratorio(Laboratorio_Entidad laboratorio)
         {
             try
@@ -147,11 +146,6 @@ namespace CapaNegocio.Laboratorios
                 {
                     throw new ArgumentException("El ID del laboratorio debe ser mayor a 0.");
                 }
-
-                // Aquí podrías agregar validaciones adicionales, por ejemplo:
-                // - Verificar si tiene reservas pendientes
-                // - Verificar si está en uso
-                // etc.
 
                 return laboratorioDAO.eliminarLaboratorio(idLaboratorio);
             }

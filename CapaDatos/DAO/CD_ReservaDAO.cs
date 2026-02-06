@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos.DAO
 {
-    internal class CD_ReservaDAO
+    public class CD_ReservaDAO
     {
         private CD_ManagementSQL obj_sql = new CD_ManagementSQL();
 

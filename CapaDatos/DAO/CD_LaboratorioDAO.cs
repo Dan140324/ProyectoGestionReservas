@@ -13,8 +13,9 @@ namespace CapaDatos.DAO
     public class CD_LaboratorioDAO
     {
         private CD_ManagementSQL obj_sql = new CD_ManagementSQL();
+        Laboratorio_Entidad laboratorio = null;
 
-        // MÉTODO REFACTORIZADO: Retorna List<Laboratorio_Entidad>
+
         public List<Laboratorio_Entidad> getListaLaboratorio()
         {
             List<Laboratorio_Entidad> listaLaboratorios = new List<Laboratorio_Entidad>();
@@ -55,7 +56,7 @@ namespace CapaDatos.DAO
             return obj_sql.EjecutarSP_Query("sp_ListarLaboratoriosActivos", lista_parametros);
         }
 
-        // Obtener un laboratorio por ID (retorna entidad)
+        //Obtener un laboratorio por ID (retorna entidad)
         public Laboratorio_Entidad obtenerLaboratorioPorId(int idLaboratorio)
         {
             Laboratorio_Entidad laboratorio = null;
@@ -75,7 +76,8 @@ namespace CapaDatos.DAO
                         IdLaboratorio = Convert.ToInt32(row["idLaboratorio"]),
                         NombreLaboratorio = row["nombre"].ToString(),
                         Capacidad = Convert.ToInt32(row["capacidad"]),
-                        IdEstado = Convert.ToInt32(row["idEstado"])
+                        IdEstado = Convert.ToInt32(row["idEstado"]),
+                        NombreEstado = row["Estado"].ToString()
                     };
                 }
             }
@@ -87,7 +89,7 @@ namespace CapaDatos.DAO
             return laboratorio;
         }
 
-        // Guardar laboratorio (recibe entidad)
+        //Guardar laboratorio (recibe entidad)
         public bool guardarLaboratorio(Laboratorio_Entidad laboratorio)
         {
             try
@@ -107,7 +109,6 @@ namespace CapaDatos.DAO
             }
         }
 
-        // Método sobrecargado: mantener compatibilidad con código anterior
         public bool guardarLaboratorio(int? idLaboratorio, string nombreLaboratorio, int capacidad, int idEstado)
         {
             Laboratorio_Entidad laboratorio = new Laboratorio_Entidad

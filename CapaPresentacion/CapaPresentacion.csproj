@@ -12,8 +12,4 @@
     <ProjectReference Include="..\CapaNegocio\CapaNegocio.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="FormulariosReservas\" />
-  </ItemGroup>
-
 </Project>

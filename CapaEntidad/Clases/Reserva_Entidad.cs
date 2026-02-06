@@ -106,7 +106,7 @@ namespace CapaEntidad.Clases
         //Para auditoría
         [DisplayName("Fecha Creación")]
         public DateTime? FechaCreacion { get; set; }
-=
+
 
         //Propiedades calculadas y métodos auxiliares
         //Duración en horas

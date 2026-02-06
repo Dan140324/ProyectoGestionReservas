@@ -1,4 +1,5 @@
-﻿using CapaPresentacion.Logins;
+﻿using CapaPresentacion.Formularios;
+using CapaPresentacion.Logins;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaPresentacion.FormulariosReservas;
 
 namespace CapaPresentacion.FormulariosPrincipales
 {
@@ -44,6 +46,18 @@ namespace CapaPresentacion.FormulariosPrincipales
         private void btnGestionUsuarios_Click(object sender, EventArgs e)
         {
             FrmGestionUsuarios frm = new FrmGestionUsuarios();
+            frm.ShowDialog();
+        }
+
+        private void btnReservas_Click(object sender, EventArgs e)
+        {
+            FrmCrearReserva frm = new FrmCrearReserva();
+            frm.ShowDialog();
+        }
+
+        private void btnMisReservas_Click(object sender, EventArgs e)
+        {
+            FrmMisReservas frm = new FrmMisReservas();
             frm.ShowDialog();
         }
     }
