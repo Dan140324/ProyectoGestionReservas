@@ -34,6 +34,7 @@
             btnAgregarLaboratorio = new Button();
             btnEliminarLaboratorio = new Button();
             btnEditarLaboratorio = new Button();
+            lblTotalLaboratorios = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvTablaLaboratorios).BeginInit();
             SuspendLayout();
             // 
@@ -73,7 +74,7 @@
             dgvTablaLaboratorios.RowHeadersVisible = false;
             dgvTablaLaboratorios.RowHeadersWidth = 51;
             dgvTablaLaboratorios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvTablaLaboratorios.Size = new Size(677, 373);
+            dgvTablaLaboratorios.Size = new Size(677, 383);
             dgvTablaLaboratorios.TabIndex = 2;
             // 
             // btnAgregarLaboratorio
@@ -108,11 +109,21 @@
             btnEditarLaboratorio.UseVisualStyleBackColor = true;
             btnEditarLaboratorio.Click += btnEditarLaboratorio_Click;
             // 
+            // lblTotalLaboratorios
+            // 
+            lblTotalLaboratorios.AutoSize = true;
+            lblTotalLaboratorios.Location = new Point(12, 514);
+            lblTotalLaboratorios.Name = "lblTotalLaboratorios";
+            lblTotalLaboratorios.Size = new Size(154, 20);
+            lblTotalLaboratorios.TabIndex = 6;
+            lblTotalLaboratorios.Text = "Total de Laboratorios:";
+            // 
             // FrmLaboratorios
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(701, 513);
+            ClientSize = new Size(701, 543);
+            Controls.Add(lblTotalLaboratorios);
             Controls.Add(btnEditarLaboratorio);
             Controls.Add(btnEliminarLaboratorio);
             Controls.Add(btnAgregarLaboratorio);
@@ -132,5 +143,6 @@
         private Button btnAgregarLaboratorio;
         private Button btnEliminarLaboratorio;
         private Button btnEditarLaboratorio;
+        private Label lblTotalLaboratorios;
     }
 }

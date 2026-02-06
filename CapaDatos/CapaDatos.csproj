@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CapaComun\CapaComun.csproj" />
+    <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj" />
   </ItemGroup>
 
 </Project>

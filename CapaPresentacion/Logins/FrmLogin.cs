@@ -42,10 +42,10 @@ namespace CapaPresentacion.Logins
             lblMensajeError.Visible = false;
 
             CapaNegocio.CN_Usuario cnUsuario = new CapaNegocio.CN_Usuario();
-            bool loginExitoso = cnUsuario.login(txtUsuario.Text, txtContrasena.Text);
+            bool loginExitoso = cnUsuario.Login(txtUsuario.Text, txtContrasena.Text);
             if (loginExitoso)
             {
-                // Login exitoso
+                //Login exitoso
                 FrmPrincipal frmPrincipal = new FrmPrincipal();
                 this.Hide();
                 frmPrincipal.ShowDialog();
@@ -53,7 +53,7 @@ namespace CapaPresentacion.Logins
             }
             else
             {
-                // Login fallido
+                //Login fallido
                 msjError("Usuario o contraseña incorrectos.");
             }
 

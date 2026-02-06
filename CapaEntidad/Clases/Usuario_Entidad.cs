@@ -10,71 +10,80 @@ namespace CapaEntidad.Clases
 {
     public class Usuario_Entidad
     {
-        private int IdUsuario;
-        private string NombreUsuario;
-        private string Contrasena;
+        //Constructor para Binding
+        public Usuario_Entidad()
+        {
+        }
 
-        private int IdRol;
-        private string Rol;// Opcional (para mostrar)
+        public Usuario_Entidad(string usuario, string contrasena, string nombreUsuario, int idRol, int idEstado)
+        {
+            this.Usuario = usuario;
+            this.Contrasena = contrasena;
+            this.NombreUsuario = nombreUsuario;
+            this.IdRol = idRol;
+            this.IdEstado = idEstado;
+        }
 
-        private int IdEstado;
-        private string Estado; //para mostrar
-
-        public Usuario_Entidad(int idUsuario, string nombreUsuario, string contrasena, int idRol, string rol, int idEstado, string estado)
+        public Usuario_Entidad(int idUsuario, string usuario, string nombreUsuario, string contrasena,
+                               int idRol, string nombreRol, int idEstado, string nombreEstado)
         {
             this.IdUsuario = idUsuario;
+            this.Usuario = usuario;
             this.NombreUsuario = nombreUsuario;
-            this.Contrasena = claveHash;
+            this.Contrasena = contrasena;
             this.IdRol = idRol;
-            this.Rol = rol;
+            this.NombreRol = nombreRol;
             this.IdEstado = idEstado;
-            this.Estado = estado;
+            this.NombreEstado = nombreEstado;
         }
 
-        public int idUsuario
-        {
-            get { return IdUsuario; }
-            set { IdUsuario = value; }
-        }
+        [DisplayName("ID")]
+        public int IdUsuario { get; set; }
 
-        [Required(ErrorMessage = "El nombre de usuario es obligatorio.")]
-        public string nombreUsuario
-        {
-            get { return NombreUsuario; }
-            set { NombreUsuario = value; }
-        }
+        [DisplayName("Usuario")]
+        [Required(ErrorMessage = "El usuario es obligatorio.")]
+        [StringLength(50, ErrorMessage = "El usuario no puede exceder 50 caracteres.")]
+        public string Usuario { get; set; }
 
-        [Required(ErrorMessage = "La clave es obligatoria.")]
-        public string claveHash
-        {
-            get { return Contrasena; }
-            set { Contrasena = value; }
-        }
 
+        [DisplayName("Nombre Completo")]
+        [Required(ErrorMessage = "El nombre completo es obligatorio.")]
+        [StringLength(50, ErrorMessage = "El nombre no puede exceder 50 caracteres.")]
+        public string NombreUsuario { get; set; }
+
+
+        [DisplayName("Contraseña")]
+        [Required(ErrorMessage = "La contraseña es obligatoria.")]
+        [StringLength(255, ErrorMessage = "La contraseña no puede exceder 255 caracteres.")]
+        public string Contrasena { get; set; }
+
+
+        [DisplayName("ID Rol")]
         [Required(ErrorMessage = "El rol es obligatorio.")]
-        public int idRol
-        {
-            get { return IdRol; }
-            set { IdRol = value; }
-        }
+        public int IdRol { get; set; }
 
-        public string rol
-        {
-            get { return Rol; }
-            set { Rol = value; }
-        }
 
-        public int idEstado
-        {
-            get { return IdEstado; }
-            set { IdEstado = value; }
-        }
+        [DisplayName("Rol")]
+        public string NombreRol { get; set; }
 
-        public string estado
-        {
-            get { return Estado; }
-            set { Estado = value; }
-        }
 
+        [DisplayName("ID Estado")]
+        [Required(ErrorMessage = "El estado es obligatorio.")]
+        public int IdEstado { get; set; }
+
+
+        [DisplayName("Estado")]
+        public string NombreEstado { get; set; }
+
+
+        //Propiedades auxiliares
+        //Saber si es nuevo usuario
+        public bool EsNuevo => IdUsuario == 0;
+
+        //Validar si admin
+        public bool EsAdministrador => IdRol == 1 || NombreRol?.ToLower() == "administrador";
+
+        //Validar activo
+        public bool EstaActivo => IdEstado == 1 || NombreEstado?.ToLower() == "activo";
     }
 }

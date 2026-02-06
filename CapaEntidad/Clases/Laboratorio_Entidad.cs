@@ -10,52 +10,50 @@ namespace CapaEntidad.Clases
 {
     public class Laboratorio_Entidad
     {
-        private int idLaboratorio;
-        private string nombreLaboratorio;
-        private int capacidad;
-        private int idEstado;
-        
+        // Constructor vacío (necesario para binding)
+        public Laboratorio_Entidad()
+        {
+        }
+
+        // Constructor con parámetros
         public Laboratorio_Entidad(int idLaboratorio, string nombreLaboratorio, int capacidad, int idEstado)
         {
-            this.idLaboratorio = idLaboratorio;
-            this.nombreLaboratorio = nombreLaboratorio;
-            this.capacidad = capacidad;
-            this.idEstado = idEstado;
+            this.IdLaboratorio = idLaboratorio;
+            this.NombreLaboratorio = nombreLaboratorio;
+            this.Capacidad = capacidad;
+            this.IdEstado = idEstado;
         }
 
-        [DisplayName("ID Laboratorio")]
-
-        public int IdLaboratorio
+        // Constructor completo con nombre de estado (para mostrar en grid)
+        public Laboratorio_Entidad(int idLaboratorio, string nombreLaboratorio, int capacidad, int idEstado, string nombreEstado)
         {
-            get { return idLaboratorio; }
-            set { idLaboratorio = value; }
+            this.IdLaboratorio = idLaboratorio;
+            this.NombreLaboratorio = nombreLaboratorio;
+            this.Capacidad = capacidad;
+            this.IdEstado = idEstado;
+            this.NombreEstado = nombreEstado;
         }
 
+        // Propiedades
+        [DisplayName("ID")]
+        public int IdLaboratorio { get; set; }
 
-        [DisplayName("Nombre Laboratorio")]
+        [DisplayName("Nombre del Laboratorio")]
         [Required(ErrorMessage = "El nombre del laboratorio es obligatorio.")]
-        public string NombreLaboratorio
-        {
-            get { return nombreLaboratorio; }
-            set { nombreLaboratorio = value; }
-        }
+        public string NombreLaboratorio { get; set; }
 
         [DisplayName("Capacidad")]
         [Required(ErrorMessage = "La capacidad del laboratorio es obligatoria.")]
-        public int Capacidad
-        {
-            get { return capacidad; }
-            set { capacidad = value; }
-        }
+        [Range(1, 100, ErrorMessage = "La capacidad debe estar entre 1 y 100.")]
+        public int Capacidad { get; set; }
 
         [DisplayName("Estado")]
         [Required(ErrorMessage = "El estado del laboratorio es obligatorio.")]
-        public int IdEstado
-        {
-            get { return idEstado; }
-            set { idEstado = value; }
-        }
-        
+        public int IdEstado { get; set; }
+
+        // Propiedad adicional para mostrar el nombre del estado en el grid
+        [DisplayName("Estado")]
+        public string NombreEstado { get; set; }
     }
 }
 

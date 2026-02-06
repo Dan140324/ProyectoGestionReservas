@@ -1,4 +1,5 @@
-﻿using CapaNegocio.Laboratorios;
+﻿using CapaEntidad.Clases;
+using CapaNegocio.Laboratorios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,56 +14,150 @@ namespace CapaPresentacion.Formularios
 {
     public partial class FrmCrearEditarLabs : Form
     {
-        private int? idLaboratorio = null;
+        private CN_Laboratorios cnLaboratorios = new CN_Laboratorios();
+        private Laboratorio_Entidad laboratorioActual = null;
+        private bool esEdicion = false;
+
+        // Constructor para CREAR nuevo laboratorio
         public FrmCrearEditarLabs()
         {
             InitializeComponent();
             lblAgregarLaboratorio.Text = "Agregar Laboratorio";
+            esEdicion = false;
+
+            // Inicializar nuevo laboratorio
+            laboratorioActual = new Laboratorio_Entidad
+            {
+                IdLaboratorio = 0,
+                IdEstado = 1 // Activo por defecto
+            };
         }
 
+        // CONSTRUCTOR REFACTORIZADO: Recibe la entidad completa
+        public FrmCrearEditarLabs(Laboratorio_Entidad laboratorio)
+        {
+            InitializeComponent();
+            lblAgregarLaboratorio.Text = "Editar Laboratorio";
+            esEdicion = true;
+
+            // Guardar referencia a la entidad
+            laboratorioActual = laboratorio;
+
+            // Cargar datos en los controles
+            CargarDatos();
+        }
+
+        // Constructor anterior (mantener compatibilidad si lo necesitas)
         public FrmCrearEditarLabs(int id, string nombre, int capacidad)
         {
             InitializeComponent();
-
             lblAgregarLaboratorio.Text = "Editar Laboratorio";
-            
-            idLaboratorio = id;
-            lblActualIdLab.Text = id.ToString();
-            txtNombreLab.Text = nombre;
-            nudCapacidadLab.Value = capacidad;
+            esEdicion = true;
+
+            laboratorioActual = new Laboratorio_Entidad
+            {
+                IdLaboratorio = id,
+                NombreLaboratorio = nombre,
+                Capacidad = capacidad,
+                IdEstado = 1
+            };
+
+            CargarDatos();
         }
 
+        // NUEVO: Cargar datos de la entidad en los controles
+        private void CargarDatos()
+        {
+            if (laboratorioActual != null)
+            {
+                lblActualIdLab.Text = laboratorioActual.IdLaboratorio.ToString();
+                txtNombreLab.Text = laboratorioActual.NombreLaboratorio;
+                nudCapacidadLab.Value = laboratorioActual.Capacidad;
+            }
+        }
+
+        // MÉTODO REFACTORIZADO: Trabaja con la entidad
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-
-            if (string.IsNullOrWhiteSpace(txtNombreLab.Text))
+            try
             {
-                MessageBox.Show("El nombre es obligatorio");
-                return;
+                // Validaciones básicas de UI
+                if (string.IsNullOrWhiteSpace(txtNombreLab.Text))
+                {
+                    MessageBox.Show("El nombre es obligatorio",
+                        "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNombreLab.Focus();
+                    return;
+                }
+
+                if (nudCapacidadLab.Value <= 0)
+                {
+                    MessageBox.Show("La capacidad debe ser mayor a 0",
+                        "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    nudCapacidadLab.Focus();
+                    return;
+                }
+
+                // Validar nombre duplicado
+                if (cnLaboratorios.existeLaboratorioConNombre(
+                    txtNombreLab.Text.Trim(),
+                    esEdicion ? laboratorioActual.IdLaboratorio : (int?)null))
+                {
+                    MessageBox.Show("Ya existe un laboratorio con ese nombre",
+                        "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNombreLab.Focus();
+                    return;
+                }
+
+                // Actualizar datos de la entidad
+                laboratorioActual.NombreLaboratorio = txtNombreLab.Text.Trim();
+                laboratorioActual.Capacidad = (int)nudCapacidadLab.Value;
+                laboratorioActual.IdEstado = 1; // Activo
+
+                // Guardar usando la capa de negocio
+                bool guardado = cnLaboratorios.guardarLaboratorio(laboratorioActual);
+
+                if (guardado)
+                {
+                    string mensaje = esEdicion
+                        ? "Laboratorio actualizado correctamente"
+                        : "Laboratorio creado correctamente";
+
+                    MessageBox.Show(mensaje, "Éxito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo guardar el laboratorio",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-            CN_Laboratorios cn = new CN_Laboratorios();
-
-            bool ok = cn.guardarLaboratorio(
-                idLaboratorio,
-                txtNombreLab.Text.Trim(),
-                (int)nudCapacidadLab.Value,
-                1 // Activo
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "¿Está seguro de que desea cancelar? Los cambios no se guardarán.",
+                "Confirmar cancelación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
             );
 
-            if (ok)
+            if (result == DialogResult.Yes)
             {
-                MessageBox.Show("Laboratorio guardado correctamente");
-                DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.Cancel;
                 Close();
             }
         }
 
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
+    
     }
 }

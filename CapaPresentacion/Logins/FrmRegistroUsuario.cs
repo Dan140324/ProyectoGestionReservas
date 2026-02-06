@@ -1,4 +1,8 @@
-﻿using System;
+﻿using CapaComun;
+using CapaDatos.DAO;
+using CapaEntidad.Clases;
+using CapaNegocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CapaNegocio;
 
 namespace CapaPresentacion.Logins
 {
@@ -17,7 +20,6 @@ namespace CapaPresentacion.Logins
         {
             InitializeComponent();
         }
-
         private void btnRegistrarUsuario_Click(object sender, EventArgs e)
         {
             try
@@ -41,11 +43,10 @@ namespace CapaPresentacion.Logins
                     txtNombreUsuario.Focus();
                     return;
                 }
-
                 //Si todo está bien, ocultamos el mensaje de error y continuamos con el registro.
                 lblMensajeError.Visible = false;
                 CN_Usuario cnUsuario = new CN_Usuario();
-                bool registroExitoso = cnUsuario.crearUsuario(txtNuevoUsuario.Text, txtNuevaContrasena.Text, txtNombreUsuario.Text);
+                bool registroExitoso = cnUsuario.CrearUsuario(txtNuevoUsuario.Text, txtNuevaContrasena.Text, txtNombreUsuario.Text);
                 if (registroExitoso)
                 {
                     MessageBox.Show("Usuario registrado exitosamente.");
@@ -61,16 +62,15 @@ namespace CapaPresentacion.Logins
                 msjError("Ocurrió un error: " + ex.Message);
             }
         }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void msjError(string mensaje)
         {
             lblMensajeError.Text = mensaje;
             lblMensajeError.Visible = true;
         }
+
     }
 }
